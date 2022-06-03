@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { EMPTY, empty } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'teamApp';
+  title = 'Team Generator';
+
+  newMemberName = "";
+  members: string[] = [];
+  errorMessage = '';
+
+  onInput(member: string)
+  {
+    this.newMemberName = member;
+  }
+
+  addMember(){
+    if(!this.newMemberName)
+    {
+      this.errorMessage = "Name can't be empty!";
+      return;
+    }
+    this.members.push(this.newMemberName);
+    this.newMemberName = '';
+  }
 }
